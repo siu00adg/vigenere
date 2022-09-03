@@ -1,2 +1,1 @@
-# vigenere
-Breaking the Vigenere Cipher (XOR Variant) - Programming Assignment
+# Breaking the Vigenere Cipher (XOR Variant) - Programming Assignment
