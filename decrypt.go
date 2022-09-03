@@ -52,7 +52,7 @@ func (f *Frequencies) countChars() {
 
 func (f *Frequencies) dump() {
 	keys := make([]string, 0, len(f.freq))
-	for k, _ := range f.freq {
+	for k := range f.freq {
 		keys = append(keys, string(k))
 	}
 	sort.Strings(keys)
