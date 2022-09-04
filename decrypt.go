@@ -16,7 +16,6 @@ const (
 )
 
 type Frequencies struct {
-	count        map[byte]int
 	freq         map[byte]float32
 	ss           float32
 	chars        []byte
@@ -26,7 +25,6 @@ type Frequencies struct {
 func (f *Frequencies) run(chars []byte) {
 	f.invalidChars = false
 	f.chars = chars
-	f.count = make(map[byte]int)
 	f.freq = make(map[byte]float32)
 	f.countChars()
 	f.sumOfSquares()
@@ -42,7 +40,6 @@ func (f *Frequencies) sumOfSquares() {
 
 func (f *Frequencies) countChars() {
 	for _, c := range f.chars {
-		f.count[byte(c)] = f.count[byte(c)] + 1
 		f.freq[byte(c)] = f.freq[byte(c)] + float32(1)/float32(len(f.chars))
 		if !isAllowed(c) {
 			f.invalidChars = true
@@ -147,7 +144,7 @@ func decrypt(cText []byte, key []byte) []byte {
 func getCorpusFrequencies(filepath string) *Frequencies {
 	file, err := os.Open(filepath)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 		return nil
 	}
 	defer file.Close()
@@ -216,7 +213,7 @@ func hexStringToBytes(s string) []byte {
 func getAssignmentCipher(filepath string) []byte {
 	file, err := os.Open(filepath)
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 		return nil
 	}
 	defer file.Close()
